@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Logging</title>
+</head>
+</head>
+<body>
+	<form action="" method="POST">
+	{% if presence or logged %}
+		<div> Logowanie przeszło pomyślnie! </div>
+	<div>
+     	<p>Podziel się z uzytkownikami swoimi przemysleniami!</p>
+     	<p><a href="/create_post">Utworz post</a>
+     </div>
+     <div>
+     	<p>Zobacz wpisy innych uzytkownikow</p>
+     	<p><a href="/show_wall">Pokaz tablice</a>
+     </div>
+     <div>
+     	<p>Sprawdz swoje posty</p>
+     	<p><a href="/my_posts">Moja tablica</a>
+     </div>
+     <div>
+     	<p>Usuń post</p>
+     	<p><a href="/delete_post">Moja tablica</a>
+     </div>
+    	{% else %}
+		<div> Spróbuj jeszcze raz! </div>
+		<div> <p><a href="/">Logowanie</a>
+	{% endif %}	
+    
+</body>
+</html>

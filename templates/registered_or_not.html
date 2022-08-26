@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	Registered</title>
+</head>
+<body>
+	<form action="" method="GET">
+		{% if errors %}
+
+			{% for error in errors %}
+					<div>{{ error }}</div>
+
+			{% endfor %}
+		{% else %}
+		<div>	Jesteś zarejestrowany! </div>
+
+
+
+		{% endif %}
+</body>
+</html>

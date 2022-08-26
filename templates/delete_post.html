@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Usuń post</title>
+</head>
+<body>
+    <form action="" method="POST">
+    {% if logged %}
+    <div>
+        <h1>Wybierz post który chcesz usunąć!</h1>
+    </div>
+    {% for post, timestamp in posts_box %}
+        <p>/>{{post}}</p>
+    <div>
+        <p><input type="submit" name={{timestamp}} value= "Usuń powyższy post" /></p>
+    </div>
+     
+     {% endfor %}
+     
+     <div>
+        <p><a href="/">Wróć do strony głównej</a>
+     </div>
+	{% else %}
+		<h1>Ups...</h1>
+    <div>
+        <p>Jesteś niezalogowany! Zaloguj się!</p>
+        <p><a href="/">Logowanie</a>
+     </div>
+     {% endif %} 
+ </form>
+</body>
+</html>

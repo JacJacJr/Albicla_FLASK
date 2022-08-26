@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wstaw post</title>
+</head>
+<body>
+    <form action="" method="POST">
+    {% if logged %}
+    <div>
+        <h1>Wstaw post</h1>
+        <p>Post<input type="text" name="post" /></p>
+    </div>
+        <p><input type="submit" value="Wstaw post" /></p>
+     </div>
+	{% else %}
+		<h1>Ups...</h1>
+    <div>
+        <p>Jesteś niezalogowany! Zaloguj się!</p>
+        <p><a href="/">Logowanie</a>
+     </div>
+     {% endif %} 
+ </form>
+</body>
+</html>

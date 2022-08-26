@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Logging</title>
+</head>
+<body>
+	<form action="" method="GET">
+    
+    {% if presence %}
+    <h1>Dane logowanie nie zgadzają sie! Sproboj jeszcze raz</h1>
+    {% elif %}
+	<h1>Logowanie przeszło pomyślnie!</h1>
+    {% endif %}
+ </form>
+</body>
+</html>
