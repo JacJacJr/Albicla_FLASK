@@ -44,6 +44,8 @@ def register():
 			login = request.form.get('login')
 			password = request.form.get('password')
 			save_base('user_base', login, password)
+		#po zarejestrowaniu przeności na karę z informacją ZAREJESTROWANY 
+		#- lepiej przenieść to na dashboard docelowy jako już zalogowany albo na stronę logowania
 		return render_template("registered_or_not.html", errors=errors)
 
 
@@ -65,7 +67,7 @@ def index():
 		if not errors:
 			presence = True
 			session['logged'] = request.form['login']
-		return render_template('logged_or_not.html', presence = presence)
+		return render_template('logged_or_not.html', presence = presence, login =login)
 
 @app.route('/create_post', methods = ['POST', 'GET'])
 def create_post():
@@ -78,6 +80,8 @@ def create_post():
 	elif request.method == 'POST':
 		save_base('post_base', session['logged'], request.form.get('post'))
 		#print(session['logged'], request.form.get('post'))
+		#po napisaniu posta wyświetla od razu index,
+		#a może wyswietlić ten post właśnie? albo dodać do zatwierdzenia?!
 		return render_template('logged_or_not.html', logged = session['logged'])
 
 @app.route('/my_posts', methods = ['GET'])
@@ -121,11 +125,11 @@ def delete_post():
 			login, post_content = data
 			if login == session.get('logged'):
 				posts_box.append([post_content, timestamp])
-				print(request.form.keys())
 		return render_template("delete_post.html", logged = session['logged'], posts_box = posts_box)
 	elif request.method == 'POST':
 		file_content = read_base('post_base')
 		for post in file_content:
+			print(request.form)
 			if request.form.keys():
 				pass
 ############usuwanie postów do dokończenia!

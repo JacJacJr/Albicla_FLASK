@@ -7,7 +7,7 @@
 <body>
 	<form action="" method="POST">
 	{% if presence or logged %}
-		<div> Logowanie przeszło pomyślnie! </div>
+		<div> Witaj {{login}} ! </div>
 	<div>
      	<p>Podziel się z uzytkownikami swoimi przemysleniami!</p>
      	<p><a href="/create_post">Utworz post</a>
@@ -22,7 +22,7 @@
      </div>
      <div>
      	<p>Usuń post</p>
-     	<p><a href="/delete_post">Moja tablica</a>
+     	<p><a href="/delete_post">Wybierz który...</a>
      </div>
     	{% else %}
 		<div> Spróbuj jeszcze raz! </div>
