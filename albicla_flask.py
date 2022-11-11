@@ -39,13 +39,11 @@ def register():
 			errors.append('Hasła nie są identyczne!')
 		data = read_base('user_base')
 		if request.form.get('login') in data:
-			errors.append('Nieprawidłowe dane!') #użytkonik istnieje
+			errors.append('Nieprawidłowe dane!') 
 		if not errors:
 			login = request.form.get('login')
 			password = request.form.get('password')
 			save_base('user_base', login, password)
-		#po zarejestrowaniu przeności na karę z informacją ZAREJESTROWANY 
-		#- lepiej przenieść to na dashboard docelowy jako już zalogowany albo na stronę logowania
 		return render_template("registered_or_not.html", errors=errors)
 
 
@@ -79,9 +77,6 @@ def create_post():
 		return render_template('create_post.html', logged = logged)
 	elif request.method == 'POST':
 		save_base('post_base', session['logged'], request.form.get('post'))
-		#print(session['logged'], request.form.get('post'))
-		#po napisaniu posta wyświetla od razu index,
-		#a może wyswietlić ten post właśnie? albo dodać do zatwierdzenia?!
 		return render_template('logged_or_not.html', logged = session['logged'])
 
 @app.route('/my_posts', methods = ['GET'])
@@ -124,33 +119,23 @@ def delete_post():
 		for timestamp, data in post_base.items():
 			login, post_content = data
 			if login == session.get('logged'):
-				posts_box.append([post_content, timestamp])
+				posts_box.append([timestamp, post_content])
 		return render_template("delete_post.html", logged = session['logged'], posts_box = posts_box)
 	elif request.method == 'POST':
 		file_content = read_base('post_base')
+		post_id = request.form.get('deleted_post')
 		for post in file_content:
-			print(request.form)
-			if request.form.keys():
-				pass
-############usuwanie postów do dokończenia!
+			if post_id in post:
+				post_id = post
+		post_pair = file_content.pop(post_id)
+		print(f'!!!!!!!!!{file_content}')
+		deleted_post = post_pair[1]
+		file = open('post_base', 'w')
+		content_as_json = json.dumps(file_content)
+		file.write(content_as_json)
+		file.close()
+		return render_template('logged_or_not.html', logged = session['logged'], deleted_post=deleted_post)
 
-
-		return render_template("deleted_post.html", logged = session['logged'], deleted_post=deleted_posts)
-
-
-#########WYLOGOWYWANIE DO DOKOŃCZENIA
-"""
-@app.route('/unlogged', methods = ['GET', 'POST'])
-def logged_out():
-	if request.method == 'GET':
-		del session['logged']
-	return render_template('unlogged.html')
-"""
-
-###### PRZEMYŚLEĆ CAŁĄ LOGIKĘ CO KIEDY SIĘ POJAWIA (np. jak się zarejestrowałem, to może na stronę główną od razu)
-#PRZEPISAĆĆ NA ANGIELSKI WSZYSTKO
-#USTAWIANIE STATUSU ?!?!?!?
-#WYGLĄD STRONY podstawowy, żeby jakkolwiek się to prezentowało, css i takie tam
 if __name__ == "__main__":
 	app.run()
 

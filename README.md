@@ -21,7 +21,7 @@ Flask 2.1
 Werkzeug 2.1
 
 ## Setup
-At first: create empty text file nemed: "user_base" and "post_base"  in directory with file "albicla_flask.py"
+At first: create empty text file nemed: "user_base" and "post_base" in directory with file "albicla_flask.py", with empty dict "{}"
 
 To run this project: 
 1. open terminal

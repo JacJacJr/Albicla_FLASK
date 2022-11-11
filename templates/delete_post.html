@@ -9,14 +9,15 @@
     <div>
         <h1>Wybierz post który chcesz usunąć!</h1>
     </div>
-    {% for post, timestamp in posts_box %}
-        <p>/>{{post}}</p>
+    {% for timestamp, post in posts_box %}
     <div>
-        <p><input type="submit" name={{timestamp}} value= "Usuń powyższy post" /></p>
+        <p><input type="radio" name="deleted_post" value= {{timestamp}} > {{post}} </p>
     </div>
      
      {% endfor %}
-     
+     <div>
+        <p><input type="submit" value="Usuń posty" /></p>
+    </div>
      <div>
         <p><a href="/">Wróć do strony głównej</a>
      </div>
