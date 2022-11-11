@@ -14,6 +14,7 @@ That's next boot camp project, based on my first a'la social networks shell app 
 * Log in / Log out
 * Add post
 * Show posts (wall and my wall)
+* Deleting posts
 
 ## Technologies
 Python 3.10
